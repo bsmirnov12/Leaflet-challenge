@@ -23,7 +23,7 @@ function makeFaultLines(data) {
 
 
 /**
- * Returns color based on the earthquake magnitude
+ * Returns color based on earthquake magnitude
  * @param {float} mag - magnitude
  * @return {string} - HTML color code
  */
@@ -57,7 +57,7 @@ function styleFeature(feat) {
 
 
 /**
- * Creates a popup for given feature (earthquake)
+ * Creates a popup for a given feature (earthquake)
  * @param {Object} layer - a marker layer with a feature corresponding to an earthquake
  */
 function popupContent(layer) {
@@ -70,6 +70,8 @@ function popupContent(layer) {
 /**
  * Legend object for the earthquakes layer.
  * Keeping it global to be able show/hide it along with the earthquakes layer.
+ * Curtesy to Vladimir Agafonkin
+ * https://leafletjs.com/examples/choropleth/#custom-legend-control
  */
 var legend;
 
@@ -156,7 +158,7 @@ function makeTiles() {
  */
 function createMap() {
 
-    // Create base layers and collect all previously created ovevlays
+    // Create base layers and collect all previously created overlays
     let baseMaps = makeTiles();
     let overlayMaps = {
         'Fault Lines': faultLines,

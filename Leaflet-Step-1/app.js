@@ -46,10 +46,10 @@ function popupContent(layer) {
 
 /**
  * Makes legend custom control
- * @param {L.map} map - the map to attache the legend
- * @return {L.Control} - legend custom control
+ * Curtesy to Vladimir Agafonkin
+ * https://leafletjs.com/examples/choropleth/#custom-legend-control
  */
-function makeLegend(map) {
+function makeLegend() {
     let legend = L.control({position: 'bottomright'});
 
     legend.onAdd = function(map) {
@@ -67,7 +67,7 @@ function makeLegend(map) {
         return div;
     };
 
-    legend.addTo(map);
+    return legend;
 }
 
 /**
@@ -96,7 +96,7 @@ function mapEarthquakes(data) {
         style: styleFeature
     }).bindPopup(popupContent, { className: 'popup' }).addTo(map);
 
-    makeLegend(map);
+    makeLegend().addTo(map);
 }
 
 /**
@@ -108,5 +108,7 @@ const url = 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.g
 /**
  * Loads Earthquake feed from USGS website
  */
-d3.json(url).then(mapEarthquakes).catch(error => { console.log(error) });
+d3.json(url)
+    .then(mapEarthquakes)
+    .catch(error => { console.log(error) });
   
